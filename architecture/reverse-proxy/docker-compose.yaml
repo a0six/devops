@@ -1,0 +1,16 @@
+version: '3.2'
+
+services:
+  service1:
+    image: your/image
+    container_name: service1
+    
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    image: yourimage/ngnix
+    container_name: nginx
+    ports:
+     - "80:80"
+   
