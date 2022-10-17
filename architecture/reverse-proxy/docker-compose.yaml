@@ -2,14 +2,16 @@ version: '3.2'
 
 services:
   service1:
-    image: your/image
+    image: asinatra/secure
     container_name: service1
-    
+  service2:
+    image: asinatra/secure
+    container_name: service2
   nginx:
     build:
       context: .
-      dockerfile: docker/nginx/Dockerfile
-    image: yourimage/ngnix
+      dockerfile: nginx/Dockerfile
+    image: asinatra/ngnix
     container_name: nginx
     ports:
      - "80:80"
