@@ -1,0 +1,18 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: Questdb
+    orgId: 1
+
+datasources:
+- name: Questdb
+  type: postgres
+  access: proxy
+  url: questdb:8812
+  user: mdm
+  database: crypto-executor
+  secureJsonData:
+    password: test
+  jsonData:
+    sslmode: "disable"
+#https://github.com/grafana/grafana/blob/main/devenv/datasources.yaml
