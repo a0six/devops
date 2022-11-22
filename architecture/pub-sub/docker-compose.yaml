@@ -1,0 +1,32 @@
+version: "3"
+services:
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    user: "1000"
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:  
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+  mosquitto-exporter:
+    image: sapcc/mosquitto-exporter
+    container_name: mosquitto-exporter
+    command: "--endpoint tcp://mosquitto:1883"
+    ports:
+      - 9234:9234
+  producer:
+    build:
+      context: ./microservices-monorepo
+    command: "producer.py"
+    ports:
+      - 5001:5000
+    user: '1000'
+  subscriber:
+    build:
+      context: ./microservices-monorepo
+    command: "subscriber.py"
+    ports:
+      - 5002:5000
+    user: '1000'
